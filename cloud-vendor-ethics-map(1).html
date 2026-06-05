@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lawyer Ethics Opinions on Cloud and Third-Party Tech Vendor Due Diligence: A 50-State Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe5;
+    --paper-2:#ece5d7;
+    --ink:#1c1a16;
+    --ink-soft:#4a463d;
+    --rule:#d4cbb8;
+    --c-checklist:#13534547;
+    --c-checklist:#135345;
+    --c-partial:#5f9e84;
+    --c-general:#bcd8cc;
+    --c-none:#d8d3c6;
+    --tile-ink:#16221d;
+    --accent:#9a3b25;
+    --shadow:0 1px 2px rgba(28,26,22,.12), 0 6px 18px rgba(28,26,22,.07);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, #fbf7ee 0%, transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"Archivo",system-ui,sans-serif;
+    line-height:1.5;
+    padding:clamp(16px,4vw,48px);
+  }
+  .wrap{max-width:1180px;margin:0 auto;}
+  header{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:26px;}
+  .eyebrow{
+    font-family:"Archivo";font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    font-size:12px;color:var(--accent);margin:0 0 10px;
+  }
+  h1{
+    font-family:"Fraunces",Georgia,serif;font-weight:900;
+    font-size:clamp(28px,5.2vw,52px);line-height:1.02;letter-spacing:-.01em;
+    margin:0 0 14px;max-width:20ch;
+  }
+  .sub{
+    font-family:"Spectral",Georgia,serif;font-size:clamp(15px,2.1vw,19px);
+    color:var(--ink-soft);max-width:70ch;margin:0;
+  }
+  .sub em{font-style:italic;}
+  .disclaimer{
+    font-family:"Archivo",system-ui,sans-serif;font-size:13.5px;line-height:1.6;
+    color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--rule);
+    border-left:4px solid var(--accent);border-radius:10px;
+    padding:14px 18px;margin:20px 0 0;max-width:78ch;
+  }
+  .disclaimer b{color:var(--ink);}
+  .disclaimer a{color:var(--accent);font-weight:600;text-underline-offset:2px;}
+  .disclaimer a:hover{color:#7c2c1a;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:clamp(14px,3vw,40px);margin:24px 0 6px;}
+  .stat{min-width:120px;}
+  .stat b{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(26px,4vw,40px);display:block;line-height:1;}
+  .stat span{font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em;}
+
+  .legend{
+    display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px;align-items:stretch;
+  }
+  .legend button{
+    display:flex;align-items:center;gap:9px;cursor:pointer;
+    background:var(--paper-2);border:1px solid var(--rule);border-radius:999px;
+    padding:8px 14px 8px 10px;font-family:"Archivo";font-size:13px;font-weight:500;color:var(--ink);
+    transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .legend button:hover{transform:translateY(-1px);box-shadow:var(--shadow);}
+  .legend button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .legend button[aria-pressed="true"] .swatch{outline:2px solid var(--paper);}
+  .swatch{width:18px;height:18px;border-radius:5px;flex:none;border:1px solid rgba(0,0,0,.12);}
+  .swatch.checklist{background:var(--c-checklist);}
+  .swatch.partial{background:var(--c-partial);}
+  .swatch.general{background:var(--c-general);}
+  .swatch.none{background:var(--c-none);}
+  .legend .count{color:var(--ink-soft);font-variant-numeric:tabular-nums;}
+  .legend button[aria-pressed="true"] .count{color:var(--paper);opacity:.8;}
+
+  .board{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(20px,3vw,40px);align-items:start;margin-top:18px;}
+  @media (max-width:860px){.board{grid-template-columns:1fr;}}
+
+  .mapcard{background:rgba(255,255,255,.35);border:1px solid var(--rule);border-radius:16px;padding:clamp(12px,2.2vw,22px);}
+  .grid{
+    display:grid;grid-template-columns:repeat(11,1fr);gap:clamp(4px,.7vw,7px);
+  }
+  .tile{
+    grid-column:var(--c);grid-row:var(--r);
+    aspect-ratio:1/1;border:none;border-radius:9px;cursor:pointer;
+    font-family:"Archivo";font-weight:700;font-size:clamp(9px,1.35vw,14px);
+    color:var(--tile-ink);position:relative;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .1s ease, box-shadow .12s ease, opacity .15s ease;
+    box-shadow:0 1px 0 rgba(0,0,0,.05);
+  }
+  .tile.checklist{background:var(--c-checklist);color:#f4efe5;}
+  .tile.partial{background:var(--c-partial);}
+  .tile.general{background:var(--c-general);}
+  .tile.none{background:var(--c-none);}
+  .tile:hover{transform:translateY(-2px) scale(1.04);box-shadow:var(--shadow);z-index:2;}
+  .tile:focus-visible{outline:3px solid var(--accent);outline-offset:2px;z-index:3;}
+  .tile[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:2px;z-index:3;}
+  .grid.filtered .tile.dim{opacity:.16;pointer-events:none;}
+
+  .panel{
+    background:var(--paper-2);border:1px solid var(--rule);border-radius:16px;
+    padding:clamp(18px,2.6vw,28px);position:sticky;top:18px;min-height:260px;
+  }
+  @media (max-width:860px){.panel{position:static;}}
+  .panel .ph-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 6px;}
+  .panel h2{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(24px,3.4vw,34px);margin:0 0 12px;line-height:1.04;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+    padding:5px 11px;border-radius:999px;border:1px solid rgba(0,0,0,.1);margin-bottom:16px;}
+  .badge .dot{width:11px;height:11px;border-radius:50%;}
+  .badge.checklist{background:#dfeae5;color:#0e3a30;} .badge.checklist .dot{background:var(--c-checklist);}
+  .badge.partial{background:#e3efe9;color:#244a3b;} .badge.partial .dot{background:var(--c-partial);}
+  .badge.general{background:#e9f0ec;color:#37544a;} .badge.general .dot{background:#6fa78f;}
+  .badge.none{background:#eae6dc;color:#4a463d;} .badge.none .dot{background:#b3ad9f;}
+  .cite{font-family:"Spectral",serif;font-size:17px;line-height:1.4;margin:0 0 4px;font-weight:500;}
+  .yr{color:var(--ink-soft);font-size:13px;margin:0 0 16px;letter-spacing:.02em;}
+  .note{font-family:"Spectral",serif;font-size:15.5px;line-height:1.55;color:var(--ink);margin:0 0 20px;}
+  .link{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    background:var(--ink);color:var(--paper);font-family:"Archivo";font-weight:600;font-size:13.5px;
+    padding:11px 18px;border-radius:10px;transition:transform .12s ease, background .12s ease;
+  }
+  .link:hover{transform:translateY(-1px);background:#000;}
+  .link[hidden]{display:none;}
+  .link svg{width:14px;height:14px;}
+  .empty{font-family:"Spectral",serif;font-size:16px;color:var(--ink-soft);line-height:1.6;}
+  .empty strong{color:var(--ink);}
+
+  footer{margin-top:34px;border-top:1px solid var(--rule);padding-top:18px;
+    font-size:13px;color:var(--ink-soft);line-height:1.6;max-width:90ch;}
+  footer p{margin:0 0 8px;}
+  footer b{color:var(--ink);}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Legal Ethics Reference</p>
+    <h1>Lawyer Due Diligence for Cloud &amp; Third-Party Tech Vendors</h1>
+    <p class="sub">A 50-state map of bar ethics opinions on a lawyer's duty to vet technology vendors for confidentiality, security, backup, breach notice, and data retrieval. The benchmark is the three-part checklist in <em>Washington Advisory Op. 2215 (2012)</em>, quoted in <em>Ohio Op. 2017-5</em> and carried forward by <em>ABA Formal Op. 512 (2024)</em>. Select any state for its opinion.</p>
+    <p class="disclaimer"><b>Disclaimer.</b> This project was vibe coded during Debbie Ginsberg's ABA 512 Formal Ethics Opinion and Its Impact on Law Libraries session at CALIcon 2026. It was created as a response to a comment Jenny made about Ohio opinion 2017-5 applying to all tech vendors, including AI vendors. Then she wondered what other states had similar opinions. This is the result of a Claude search and a request to help visualize the data. It is only intended to be an example of vibecoding. It is not intended as a citeable information source as Jenny did this in 30 minutes and has not yet vetted it all. Keep this in mind if you use it! <a href="https://github.com/Jwondracek/vibecoding/blob/11bebeed0197107d7bd0a94181ff72bf4414a76e/cloud-vendor-ethics-map-research-NOT-Vetted.md" target="_blank" rel="noopener noreferrer">View the underlying research (not vetted)</a>.</p>
+  </header>
+
+  <div class="stats" aria-hidden="true">
+    <div class="stat"><b>32</b><span>states with a dedicated opinion</span></div>
+    <div class="stat"><b>14</b><span>adopt the full 3-part checklist</span></div>
+    <div class="stat"><b>11</b><span>endorse a partial / general standard</span></div>
+    <div class="stat"><b>19</b><span>no dedicated opinion (incl. DC)</span></div>
+  </div>
+
+  <div class="legend" role="group" aria-label="Filter states by category">
+    <button data-filter="checklist" aria-pressed="false"><span class="swatch checklist"></span> Adopts 3-part checklist <span class="count">(14)</span></button>
+    <button data-filter="partial" aria-pressed="false"><span class="swatch partial"></span> Partial checklist <span class="count">(11)</span></button>
+    <button data-filter="general" aria-pressed="false"><span class="swatch general"></span> General standard only <span class="count">(7)</span></button>
+    <button data-filter="none" aria-pressed="false"><span class="swatch none"></span> No dedicated opinion <span class="count">(19)</span></button>
+  </div>
+
+  <div class="board">
+    <div class="mapcard">
+      <div class="grid" id="grid" role="group" aria-label="United States cloud-vendor ethics opinions, arranged as a tile grid"></div>
+    </div>
+
+    <aside class="panel" aria-live="polite" aria-atomic="true" id="panel">
+      <div id="panel-empty" class="empty">
+        <strong>Pick a state.</strong> Each tile is shaded by how closely the jurisdiction tracks the Washington / Ohio vendor-vetting checklist: confidentiality agreement; regular backup; and notice of subpoenas, breaches, or unauthorized access, plus reliable data retrieval if the vendor relationship ends.
+      </div>
+      <div id="panel-content" hidden>
+        <p class="ph-eyebrow" id="p-eyebrow">Ethics Opinion</p>
+        <h2 id="p-name"></h2>
+        <span class="badge" id="p-badge"><span class="dot"></span><span id="p-badge-text"></span></span>
+        <p class="cite" id="p-cite"></p>
+        <p class="yr" id="p-year"></p>
+        <p class="note" id="p-note"></p>
+        <a class="link" id="p-link" href="#" target="_blank" rel="noopener noreferrer">
+          Read the opinion
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p><b>How to read the colors.</b> Darkest tiles adopt the granular three-part vendor checklist; mid tiles list some but not all elements; pale tiles endorse only a general "reasonable efforts" standard; gray tiles have no dedicated cloud opinion and are governed by their adopted versions of Rule 1.1 cmt. [8] (technology competence), Rule 1.6(c) (reasonable efforts to safeguard), and Rule 5.3 (supervising nonlawyer vendors).</p>
+    <p><b>Caveats.</b> North Dakota Op. 99-03 is verified by secondary authority only; Missouri publishes informal-opinion summaries, not full text; Arizona Op. 09-04 issued under prior committee authority; Wisconsin Op. EF-15-01 is member-gated. Several gray-tile states have adjacent opinions on email, virtual practice, data breach, or generative AI that impose a comparable duty.</p>
+    <p>Citations verified to exist, to stand for the stated proposition, and for currentness. Survey compiled June 2026. Tile grid is a geographic approximation, not a precise map.</p>
+  </footer>
+</div>
+
+<script>
+const STATES = [
+  // category: checklist | partial | general | none ; c = grid column (1-11), r = grid row (1-8)
+  {ab:"AK",name:"Alaska",c:1,r:1,cat:"general",cite:"Alaska Bar Ass'n Ethics Op. 2014-3",year:"2014",link:"https://alaskabar.org/wp-content/uploads/2014-3.pdf",note:"Reasonable steps to keep client data confidential; select a reputable provider. Less granular than the Washington checklist; supplemented by Op. 2025-1 on generative AI."},
+  {ab:"ME",name:"Maine",c:11,r:1,cat:"checklist",cite:"Me. Bd. of Overseers of the Bar Prof'l Ethics Comm'n Op. 207",year:"2013",link:"https://www.mebaroverseers.org/attorney_services/opinion.html?id=478397",note:"Review terms of service and service-level agreements; review vendor technology for security and backup; cross-cites Pennsylvania 2011-200 and North Carolina 2011 FEO 6 for granular safeguards."},
+
+  {ab:"VT",name:"Vermont",c:10,r:2,cat:"general",cite:"Vt. Bar Ass'n Advisory Ethics Op. 2010-6",year:"2010",link:"https://www.vtbar.org/wp-content/uploads/2021/03/10-06.pdf",note:"Take reasonable precautions to keep client data secure and accessible; consider paper retention for some documents; discuss cloud storage with the client when data is especially sensitive."},
+  {ab:"NH",name:"New Hampshire",c:11,r:2,cat:"checklist",cite:"N.H. Bar Ass'n Ethics Comm. Advisory Op. 2012-13/4",year:"2013",link:"https://www.nhbar.org/ethics/opinion-2012-13-04",note:"Maintain a basic understanding of the technology; obtain informed consent for highly confidential information; delete and return data at the conclusion; make reasonable efforts to ensure the provider acts compatibly with the lawyer's professional responsibilities."},
+
+  {ab:"WA",name:"Washington",c:1,r:3,cat:"checklist",cite:"Wash. State Bar Ass'n Advisory Op. 2215",year:"2012 — the source checklist",link:"https://ao.wsba.org/print.aspx?ID=1662",note:"The seminal three-part checklist: a confidentiality and security agreement consistent with RPC 1.6; regular backup; and notice of subpoenas, breaches, or unauthorized access, plus a reliable means of retrieving data on termination or vendor failure. Anchored in RPC 1.1, 1.6, and 1.15A."},
+  {ab:"ID",name:"Idaho",c:2,r:3,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"Only informal AI-related guidance. Lawyers are governed by Idaho's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"MT",name:"Montana",c:3,r:3,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Montana's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"ND",name:"North Dakota",c:4,r:3,cat:"general",cite:"State Bar Ass'n of N.D. Ethics Comm. Op. 99-03",year:"1999",link:"",note:"Addresses off-site electronic storage and transmission predating the term cloud computing; security must be adequate to the sensitivity of the records. Verified by secondary authority only; no primary-source URL confirmed."},
+  {ab:"MN",name:"Minnesota",c:5,r:3,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Minnesota's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"WI",name:"Wisconsin",c:6,r:3,cat:"partial",cite:"State Bar of Wis. Prof'l Ethics Comm. Formal Op. EF-15-01",year:"2015",link:"https://www.wisbar.org/formembers/ethics/Ethics%20Opinions/EF-15-01%20Cloud%20Computing%20Amended.pdf",note:"Weigh the sensitivity of the data, the impact of disclosure, and client instructions; consult an expert if the lawyer lacks technology expertise; understand the provider's reputation and the terms of the agreement. The opinion text is member-gated."},
+  {ab:"MI",name:"Michigan",c:7,r:3,cat:"general",cite:"State Bar of Mich. Op. RI-381",year:"2020",link:"https://www.michbar.org/opinions/ethics/numbered_opinions/RI-381",note:"The lawyer must retain ownership of and access to file materials when the vendor relationship ends, and must exercise reasonable care that the vendor itself uses reasonable security measures."},
+  {ab:"NY",name:"New York",c:9,r:3,cat:"checklist",cite:"N.Y. State Bar Ass'n Comm. on Prof'l Ethics Op. 842",year:"2010 (see also Ops. 940, 1020)",link:"https://nysba.org/ethics-opinion-842/",note:"The closest analogue to the Washington and Ohio checklist: the vendor must have an enforceable confidentiality obligation and should give notice if served with process; the lawyer must guard against foreseeable infiltration, investigate vendor security, and review periodically."},
+  {ab:"MA",name:"Massachusetts",c:10,r:3,cat:"partial",cite:"Mass. Bar Ass'n Ethics Op. 12-03",year:"2012",link:"https://www.massbar.org/publications/ethics-opinions/ethics-opinion-article/ethics-opinions-2012-opinion-12-03",note:"Review terms of service, restrictions on data access, data portability, and vendor security; revisit periodically; follow client instructions; obtain client approval before storing particularly sensitive information via the internet."},
+  {ab:"RI",name:"Rhode Island",c:11,r:3,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Rhode Island's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+
+  {ab:"OR",name:"Oregon",c:1,r:4,cat:"checklist",cite:"Or. State Bar Formal Op. 2011-188",year:"2011",link:"https://www.osbar.org/_docs/ethics/2011-188.pdf",note:"The service agreement must require the vendor to preserve confidentiality and security; require notice if data is accessed by an unauthorized party; ensure adequate backup; and be re-evaluated periodically."},
+  {ab:"NV",name:"Nevada",c:2,r:4,cat:"partial",cite:"State Bar of Nev. Formal Op. 33",year:"2006",link:"https://nvbar.org/for-lawyers/ethics-discipline/ethics-opinions/",note:"A lawyer may store client files on a server not exclusively in the lawyer's control if the lawyer acts competently and reasonably safeguards confidences, choosing a vendor that can be relied on to keep information confidential and requiring it to do so."},
+  {ab:"WY",name:"Wyoming",c:3,r:4,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Wyoming's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"SD",name:"South Dakota",c:4,r:4,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by South Dakota's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"IA",name:"Iowa",c:5,r:4,cat:"checklist",cite:"Iowa State Bar Ass'n Ethics Op. 11-01",year:"2011",link:"http://205.209.45.153/iabar/IowaEthicsOpinions.nsf/b6868944e3311dd0872581100042934f/a092fcd35bb508e0872581100042b927/$FILE/Ethics%20Opinion%2011-01%20--%20Software%20as%20a%20Service%20-%20Cloud%20Computing.pdf",note:"Due diligence on vendor reputation and location; review the user agreement (choice of law, liability limits); ensure data return on termination, encryption, and unfettered access to data when needed."},
+  {ab:"IL",name:"Illinois",c:6,r:4,cat:"checklist",cite:"Ill. State Bar Ass'n Prof'l Conduct Advisory Op. 16-06",year:"2016",link:"https://www.isba.org/sites/default/files/ethicsopinions/16-06.pdf",note:"A seven-step diligence list: investigate provider security, reputation, and breach history; contractual confidentiality; breach notification; and data backup with exit and portability. Expressly cites Washington Op. 2215; grounded in Rules 1.1, 1.6, and 5.3."},
+  {ab:"IN",name:"Indiana",c:7,r:4,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No formal opinion located, though Indiana has disciplined lawyers for cloud-storage misuse under Rule 1.6 (Matter of Lockwood). Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"OH",name:"Ohio",c:8,r:4,cat:"checklist",cite:"Ohio Bd. of Prof'l Conduct Op. 2017-5",year:"2017 — quotes the Washington checklist",link:"https://www.ohioadvop.org/wp-content/uploads/2017/03/Adv.-Op.-2017-5.pdf",note:"The opinion you started from. The lawyer must confirm the vendor will maintain and secure data consistent with confidentiality; ensure backup; and require notice of subpoenas, unauthorized access, or breach, plus reliable data retrieval if the agreement ends or the vendor fails. Anchored in Prof.Cond.R. 1.6(c) and 5.3(a) with Rule 1.1 cmt. [8]."},
+  {ab:"PA",name:"Pennsylvania",c:9,r:4,cat:"checklist",cite:"Pa. Bar Ass'n Comm. on Legal Ethics & Prof'l Resp. Formal Op. 2011-200",year:"2011",link:"http://www.slaw.ca/wp-content/uploads/2011/11/2011-200-Cloud-Computing.pdf",note:"A lawyer may store client material in the cloud if reasonable care assures confidentiality and reasonable safeguards protect against breach and loss. Includes a detailed 15-point safeguard list that exceeds the three-part standard."},
+  {ab:"NJ",name:"New Jersey",c:10,r:4,cat:"checklist",cite:"N.J. Sup. Ct. Advisory Comm. on Prof'l Ethics Op. 701",year:"2006",link:"https://afbnj.org/wp-content/uploads/2024/02/8.-ACPE-Opinion701-Electronic-Storage.pdf",note:"Reasonable care means entrusting documents only to a third party with an enforceable obligation to preserve confidentiality and security, and employing available technology to guard against reasonably foreseeable attempts to infiltrate the data."},
+  {ab:"CT",name:"Connecticut",c:11,r:4,cat:"partial",cite:"Conn. Bar Ass'n Prof'l Ethics Comm. Informal Op. 2013-07",year:"2013",link:"https://www.ctbar.org/docs/default-source/publications/ethics-opinions-informal-opinions/2013-opinions/informal-opinion-2013-07",note:"The lawyer's ownership of and unfettered access to data must not be hindered; data must be segregated; reasonable efforts are commensurate with the risk."},
+
+  {ab:"CA",name:"California",c:1,r:5,cat:"general",cite:"State Bar of Cal. Standing Comm. on Prof'l Resp. & Conduct Formal Op. 2010-179",year:"2010 (see also Op. 2012-184)",link:"https://www.calbar.ca.gov/Portals/0/documents/ethics/Opinions/2010-179-Interim-No-08-0002-PAW.pdf",note:"A six-factor test: the technology's security level; legal ramifications of interception; sensitivity of the data; impact of disclosure; urgency; and client instructions. Op. 2012-184 applies the framework to virtual law offices."},
+  {ab:"UT",name:"Utah",c:2,r:5,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Utah's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"CO",name:"Colorado",c:3,r:5,cat:"general",cite:"Colo. Bar Ass'n Formal Op. 149 (2022); Formal Op. 141 (2019)",year:"2019 / 2022",link:"https://www.cobar.org/Portals/COBAR/Repository/ethicsOpinions/Op%20149%20--%20Virtual%20Law%20Practice%20(Clean).pdf",note:"No standalone cloud opinion; the virtual-practice opinion adopts the ABA 498 reasoning, requiring reasonable vendor due diligence, encryption where appropriate, regular backup, and breach-response planning."},
+  {ab:"NE",name:"Nebraska",c:4,r:5,cat:"checklist",cite:"Neb. State Bar Ass'n Lawyer's Advisory Comm. Op. 19-01",year:"2019",link:"https://supremecourt.nebraska.gov/sites/default/files/ethics-opinions/Lawyer/19-01.pdf",note:"Reasonable efforts to prevent inadvertent or unauthorized access, to maintain confidentiality, and to establish safeguards against loss, breaches, business interruptions, and other risks."},
+  {ab:"MO",name:"Missouri",c:5,r:5,cat:"general",cite:"Mo. Bar Informal Op. 2018-09",year:"2018 — summary only",link:"https://news.mobar.org/10-new-informal-advisory-opinion-summaries-published/",note:"Missouri publishes only summaries of its informal opinions. The lawyer must maintain technology competence and make reasonable efforts to safeguard confidential information under Rules 4-1.6 and 4-5.3."},
+  {ab:"KY",name:"Kentucky",c:6,r:5,cat:"partial",cite:"Ky. Bar Ass'n Formal Ethics Op. KBA E-437",year:"2014",link:"https://cdn.ymaws.com/www.kybar.org/resource/resmgr/Ethics_Opinions_(Part_2)_/kba_e-437.pdf",note:"Investigate the qualifications, competence, and diligence of the provider; ensure the provider is compatible with the lawyer's ethical responsibilities; consult the client about cloud use in sensitive matters."},
+  {ab:"WV",name:"West Virginia",c:7,r:5,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No dedicated cloud opinion; the Lawyer Disciplinary Board's Op. 24-01 (2024) addresses generative AI. Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"VA",name:"Virginia",c:8,r:5,cat:"partial",cite:"Va. State Bar Standing Comm. on Legal Ethics LEO 1872",year:"2013",link:"https://www.vsb.org/docs/1872-final.pdf",note:"Exercise care in selecting the vendor; hold a reasonable expectation that the vendor will keep data confidential and inaccessible; and instruct the vendor to preserve confidentiality."},
+  {ab:"MD",name:"Maryland",c:9,r:5,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Maryland's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"DE",name:"Delaware",c:10,r:5,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"The Delaware Commission on Law and Technology has issued competency and AI guidance, but no numbered cloud opinion. Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+
+  {ab:"AZ",name:"Arizona",c:2,r:6,cat:"partial",cite:"State Bar of Ariz. Ethics Op. 09-04",year:"2009 (building on Op. 05-04)",link:"https://www.azbar.org/for-legal-professionals/ethics/",note:"Reasonable security precautions; consult someone with technical competence; review periodically. A seminal early opinion frequently cross-cited by other states. Issued under prior committee authority; not formally re-adopted by the current Arizona committee."},
+  {ab:"NM",name:"New Mexico",c:3,r:6,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by New Mexico's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"KS",name:"Kansas",c:4,r:6,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Kansas's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"AR",name:"Arkansas",c:5,r:6,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"No cloud-specific opinion located. Governed by Arkansas's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"TN",name:"Tennessee",c:6,r:6,cat:"partial",cite:"Bd. of Prof'l Resp. of the Tenn. Sup. Ct. Formal Ethics Op. 2015-F-159",year:"2015",link:"https://www.tbpr.org/ethic_opinions/2015-f-159",note:"Reasonable care to assure that information remains confidential and that reasonable safeguards protect against breach, loss, and other risks."},
+  {ab:"NC",name:"North Carolina",c:7,r:6,cat:"checklist",cite:"N.C. State Bar 2011 Formal Ethics Op. 6",year:"2012",link:"https://www.ncbar.gov/for-lawyers/ethics/adopted-opinions/2011-formal-ethics-opinion-6/",note:"Review and renegotiate the terms and policies if necessary; evaluate vendor security and backup strategy; and ensure data are retrievable if the vendor shuts down or the service is cancelled. Grounded in the Rule 5.3(a) reasonable-efforts duty."},
+  {ab:"SC",name:"South Carolina",c:8,r:6,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"S.C. Bar Op. 97-08 addresses email but not cloud-vendor vetting. Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"DC",name:"District of Columbia",c:9,r:6,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"https://www.dcbar.org/for-lawyers/legal-ethics",note:"D.C. Bar Ops. 281 (1998) and 302 (2000) address unencrypted email; Op. 388 (2024) addresses generative AI. The Court of Appeals amended Comment [5] to Rule 1.1 (technology) by Order No. M284-24, effective May 6, 2025, making D.C. the 41st jurisdiction to add technology competence."},
+
+  {ab:"OK",name:"Oklahoma",c:4,r:7,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"OBA practice-management materials only; no formal opinion located. Governed by Oklahoma's adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"LA",name:"Louisiana",c:5,r:7,cat:"partial",cite:"La. State Bar Ass'n Rules of Prof'l Conduct Comm. Public Op. 19-RPCC-021",year:"2019",link:"https://www.lsba.org/documents/Ethics/EthicsOpinionLawyersUseTech02062019.pdf",note:"Conduct due diligence on prospective providers; take reasonable steps to ensure the provider's conduct meets the lawyer's ethics duties; and create an enforceable obligation on the vendor to safeguard confidentiality."},
+  {ab:"MS",name:"Mississippi",c:6,r:7,cat:"checklist",cite:"Miss. Bar Ethics Op. 263",year:"2020",link:"https://www.msbar.org/ethics-discipline/ethics-opinions/formal-opinions/263/",note:"Adopts the non-exhaustive due-diligence inquiry list from Texas Op. 680 for cloud-based storage; the lawyer must take reasonable precautions."},
+  {ab:"AL",name:"Alabama",c:7,r:7,cat:"partial",cite:"Ala. State Bar Disciplinary Comm'n Formal Op. 2010-02",year:"2010",link:"https://www.alabar.org/office-of-general-counsel/formal-opinions/2010-02/",note:"Know how the vendor handles storage and security; obtain a confidentiality agreement; and maintain a continuing duty to stay abreast of safeguards. Anchored in Rules 1.6 and 5.3."},
+  {ab:"GA",name:"Georgia",c:8,r:7,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"A State Bar of Georgia special committee on AI and technology has formed, but there is no cloud-specific formal opinion. Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+
+  {ab:"HI",name:"Hawaii",c:1,r:8,cat:"none",cite:"No dedicated cloud opinion",year:"",link:"",note:"A Hawaii Supreme Court committee on AI and the courts convened in 2024, but there is no cloud-specific lawyer opinion. Governed by adopted Rule 1.1 cmt. [8], Rule 1.6(c), and Rule 5.3."},
+  {ab:"TX",name:"Texas",c:4,r:8,cat:"partial",cite:"Prof'l Ethics Comm. for the State Bar of Tex. Op. 680",year:"2018",link:"https://www.legalethicstexas.com/Ethics-Resources/Opinions/Opinion-680",note:"The lawyer must remain continually alert to a vendor's vulnerability to data breaches and to whether a particular vendor or system appears unusually vulnerable; reasonable precautions apply in adopting and using cloud-based technology."},
+  {ab:"FL",name:"Florida",c:8,r:8,cat:"checklist",cite:"Fla. Bar Ethics Op. 12-3",year:"2013",link:"https://www.floridabar.org/etopinions/etopinion-12-3/",note:"The vendor must have an enforceable obligation to preserve confidentiality and must give notice if served with process; the lawyer must investigate vendor security and guard against foreseeable infiltration."}
+];
+
+const CAT_LABEL = {
+  checklist:"Adopts the 3-part checklist",
+  partial:"Partial checklist",
+  general:"General standard only",
+  none:"No dedicated opinion"
+};
+
+const grid = document.getElementById('grid');
+const panelEmpty = document.getElementById('panel-empty');
+const panelContent = document.getElementById('panel-content');
+let activeTile = null;
+let activeFilter = null;
+
+STATES.forEach(s => {
+  const b = document.createElement('button');
+  b.className = 'tile ' + s.cat;
+  b.style.setProperty('--c', s.c);
+  b.style.setProperty('--r', s.r);
+  b.textContent = s.ab;
+  b.dataset.cat = s.cat;
+  b.setAttribute('aria-pressed','false');
+  b.setAttribute('aria-label', s.name + ': ' + CAT_LABEL[s.cat]);
+  b.addEventListener('click', () => select(s, b));
+  grid.appendChild(b);
+});
+
+function select(s, b){
+  if(activeTile) activeTile.setAttribute('aria-pressed','false');
+  activeTile = b;
+  b.setAttribute('aria-pressed','true');
+
+  panelEmpty.hidden = true;
+  panelContent.hidden = false;
+
+  document.getElementById('p-name').textContent = s.name;
+  const badge = document.getElementById('p-badge');
+  badge.className = 'badge ' + s.cat;
+  document.getElementById('p-badge-text').textContent = CAT_LABEL[s.cat];
+  document.getElementById('p-cite').textContent = s.cite;
+  const yr = document.getElementById('p-year');
+  yr.textContent = s.year || '';
+  yr.style.display = s.year ? 'block' : 'none';
+  document.getElementById('p-note').textContent = s.note;
+
+  const link = document.getElementById('p-link');
+  if(s.link){ link.hidden = false; link.href = s.link; }
+  else { link.hidden = true; }
+}
+
+document.querySelectorAll('.legend button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter;
+    const turningOff = (activeFilter === f);
+    document.querySelectorAll('.legend button').forEach(x => x.setAttribute('aria-pressed','false'));
+    if(turningOff){
+      activeFilter = null;
+      grid.classList.remove('filtered');
+      grid.querySelectorAll('.tile').forEach(t => t.classList.remove('dim'));
+    } else {
+      activeFilter = f;
+      btn.setAttribute('aria-pressed','true');
+      grid.classList.add('filtered');
+      grid.querySelectorAll('.tile').forEach(t => {
+        t.classList.toggle('dim', t.dataset.cat !== f);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
